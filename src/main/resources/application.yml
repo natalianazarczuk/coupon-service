@@ -15,6 +15,12 @@ spring:
   flyway:
     enabled: true
 
+  web:
+    error:
+      include-message: always
+      include-stacktrace: never
+      include-exception: false
+
 management:
   endpoints:
     web:
