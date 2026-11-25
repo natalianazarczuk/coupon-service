@@ -39,4 +39,13 @@ public class Coupon {
         this.currentUsages = 0;
         this.country = country;
     }
+
+    public void incrementUsages() {
+        this.currentUsages++;
+    }
+
+    public boolean isExhausted() {
+        return currentUsages >= maxUsages;
+    }
+
 }
