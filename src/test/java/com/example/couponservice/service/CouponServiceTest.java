@@ -65,7 +65,7 @@ class CouponServiceTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> couponService.createCoupon(request))
-                .isInstanceOf(CouponAlreadyExistsExcpetion.class)
+                .isInstanceOf(CouponAlreadyExistsException.class)
                 .hasMessage("Coupon with code 'kupon123' already exists");
     }
 

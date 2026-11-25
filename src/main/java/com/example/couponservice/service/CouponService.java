@@ -34,7 +34,7 @@ public class CouponService {
             var savedCoupon = couponRepository.saveAndFlush(coupon);
             return CouponResponse.from(savedCoupon);
         } catch (DataIntegrityViolationException e) {
-            throw new CouponAlreadyExistsExcpetion(request.code(), e);
+            throw new CouponAlreadyExistsException(request.code(), e);
         }
     }
 

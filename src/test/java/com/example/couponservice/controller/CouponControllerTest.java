@@ -171,7 +171,7 @@ class CouponControllerTest {
         var request = new CreateCouponRequest("powtorzonykupon", 5, "PL");
 
         when(couponService.createCoupon(request))
-                .thenThrow(new CouponAlreadyExistsExcpetion(
+                .thenThrow(new CouponAlreadyExistsException(
                         request.code(),
                         new DataIntegrityViolationException("Duplicate code")
                 ));
