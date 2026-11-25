@@ -3,8 +3,10 @@ package com.example.couponservice.service;
 import com.example.couponservice.dto.CreateCouponRequest;
 import com.example.couponservice.dto.CouponResponse;
 import com.example.couponservice.entity.Coupon;
+import com.example.couponservice.exception.CouponAlreadyExistsExcpetion;
 import com.example.couponservice.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -23,7 +25,11 @@ public class CouponService {
                 request.country()
         );
 
-        var savedCoupon = couponRepository.save(coupon);
-        return CouponResponse.from(savedCoupon);
+        try {
+            var savedCoupon = couponRepository.saveAndFlush(coupon);
+            return CouponResponse.from(savedCoupon);
+        } catch (DataIntegrityViolationException e) {
+            throw new CouponAlreadyExistsExcpetion(request.code(), e);
+        }
     }
 }

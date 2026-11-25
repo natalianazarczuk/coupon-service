@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX unique_coupons_code_idx ON coupons (LOWER(code));
